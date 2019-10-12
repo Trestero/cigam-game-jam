@@ -30,15 +30,27 @@ public class PlayerMovement : MonoBehaviour
         //This raycast is using a sphere collider for max distance, will probably have to change when model comes in
         Physics.Raycast(transform.position, Vector3.down, out raycastHit, 0.1f);
 
+        Vector3 currentRotation = transform.rotation.eulerAngles;
+
         if (Input.GetKey(KeyCode.A))
         {
+            //set rotation
+            currentRotation.y = 180;
+            transform.rotation = Quaternion.Euler(currentRotation);
+
             rigidbody.AddForce(-speed, 0.0f, 0.0f);
+
             if(anim)
                 anim.SetBool("IsWalking", true);
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            //set rotation
+            currentRotation.y = 0;
+            transform.rotation = Quaternion.Euler(currentRotation);
+
             rigidbody.AddForce(speed, 0.0f, 0.0f);
+
             if (anim)
                 anim.SetBool("IsWalking", true);
            

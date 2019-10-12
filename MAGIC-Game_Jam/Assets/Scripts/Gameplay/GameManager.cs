@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerEarth = null;
     [SerializeField] private GameObject playerHell = null;
     private GameObject deadPlayer = null;
+    private Vector3 playerEarthPosition;
 
     [SerializeField] private CameraSystem camRig = null;
     [SerializeField] private GameObject topLevel = null;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerEarthPosition = playerEarth.transform.position;
     }
 
     // Update is called once per frame
@@ -50,13 +51,18 @@ public class GameManager : MonoBehaviour
             playerEarth.GetComponent<PlayerMovement>().ToggleRagdoll();
             playerHell.SetActive(!playerHell.activeSelf);
 
+            //If player is currently alive, record current pos and switch to dead
             if (gameState == GameState.ALIVE)
             {
+                playerEarthPosition = playerEarth.transform.position;
                 gameState = GameState.DEAD;
             }
+            //If player is currently dead, set the earth player back to the last recorded pos, and set state to alive
             else if (gameState == GameState.DEAD)
             {
                 gameState = GameState.ALIVE;
+                playerEarth.transform.position = playerEarthPosition;
+            }
                 camRig.ScreenRatio = 0.5f;
             }
         }
