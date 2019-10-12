@@ -71,14 +71,15 @@ public class CameraSystem : MonoBehaviour
         // if we made it within the tolerance, stop tracking
         if (dist.sqrMagnitude < Mathf.Pow((trackingMargin * trackingDeadZone), 2)) moving = false;
     }
+
     public float ScreenRatio
     {
         get { return screenRatio; }
         set
         {
             screenRatio = Mathf.Clamp01(value);
-            hiCam.rect.Set(hiCam.rect.x,Mathf.Lerp(0f, 1.0f, screenRatio),hiCam.rect.width,hiCam.rect.height);
-            loCam.rect.Set(loCam.rect.x,Mathf.Lerp(-1.0f, 0.0f, screenRatio),loCam.rect.width,loCam.rect.height);
+            hiCam.rect = new Rect(hiCam.rect.x,Mathf.Lerp(0f, 1.0f, screenRatio),hiCam.rect.width,hiCam.rect.height);
+            loCam.rect = new Rect(loCam.rect.x,Mathf.Lerp(-1.0f, 0.0f, screenRatio),loCam.rect.width,loCam.rect.height);
         }
     }
 }
