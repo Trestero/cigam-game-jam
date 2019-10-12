@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             rigidbody.AddForce(speed, 0.0f, 0.0f);
+            GetComponentInChildren<Animator>().SetBool("isWalking", true);
+           
         }
         if (Input.GetKeyDown(KeyCode.Space) && raycastHit.collider != null)
         {
@@ -40,11 +42,11 @@ public class PlayerMovement : MonoBehaviour
                 //isJumping = true;
             //}
         }
-        else if (isJumping && Input.GetKeyUp(KeyCode.Space)) //falls faster if user is not holding jump
+        /*else if (isJumping && Input.GetKeyUp(KeyCode.Space)) //falls faster if user is not holding jump
         {
             isJumping = false;
             rigidbody.AddForce(0.0f, -jumpForce / 3, 0.0f);
-        }
+        }*/
 
 
         ClampVelocity();
