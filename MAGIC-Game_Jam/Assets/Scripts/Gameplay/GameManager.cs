@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
             {
                 gameState = GameState.ALIVE;
                 playerEarth.transform.position = playerEarthPosition;
-            }
                 camRig.ScreenRatio = 0.5f;
             }
         }
