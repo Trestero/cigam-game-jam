@@ -32,10 +32,12 @@ public class MovingPlatform : MonoBehaviour
 
     public void Move()
     {
-        Debug.Log(transform.position);
         //past bounds
-        if(transform.position.x <= bounds[0].x || transform.position.x >= bounds[1].x)
+        if(!(transform.position.x > bounds[0].x && transform.position.x < bounds[1].x))
         {
+            Debug.Log("lower: " + bounds[0]);
+            Debug.Log("upper: " + bounds[1]);
+            Debug.Log("position: " + transform.position);
             direction *= -1;
         }
 
