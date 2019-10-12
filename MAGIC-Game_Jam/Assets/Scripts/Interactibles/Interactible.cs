@@ -13,15 +13,19 @@ public abstract class Interactible : MonoBehaviour
     BoxCollider trigger;
     GameObject player;
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         trigger = gameObject.GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
+        if(playerInTrigger && Input.GetKeyDown(KeyCode.E))
+        {
+            isActive = !isActive;
+        }
         if(playerInTrigger && isActive)
         {
             UseInteractible();
@@ -30,14 +34,22 @@ public abstract class Interactible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("entered");
         if(other.gameObject.tag == "Player")
         {
             playerInTrigger = true;
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("set is active");
                 isActive = !isActive;
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            playerInTrigger = false;
         }
     }
 
