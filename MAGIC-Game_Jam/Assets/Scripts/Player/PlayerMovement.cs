@@ -53,11 +53,6 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.AddForce(0.0f, jumpForce, 0.0f);
         }
 
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            ToggleRagdoll();
-        }
-
 
         ClampVelocity();
     }
@@ -74,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void ToggleRagdoll()
+    public void ToggleRagdoll()
     {
         //Get current ragdoll state
         bool isRagdoll = charColliders[1].enabled;

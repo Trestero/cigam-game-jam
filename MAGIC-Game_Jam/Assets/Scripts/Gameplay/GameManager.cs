@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private enum GameState { ALIVE, DEAD };
-    private GameState gameState = GameState.DEAD;
+    private GameState gameState = GameState.ALIVE;
 
     [Header("Game Rules")]
     [SerializeField] private float secondsAllowedInHell = 20;
@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Gameplay Information")]
-    [SerializeField] private GameObject player = null;
+    [SerializeField] private GameObject playerEarth = null;
+    [SerializeField] private GameObject playerHell = null;
     private GameObject deadPlayer = null;
 
     [SerializeField] private CameraSystem camRig = null;
@@ -43,6 +44,17 @@ public class GameManager : MonoBehaviour
                 camRig.ScreenRatio = Mathf.Lerp(0.5f, 1.0f, howScrewedAreWe);
                 break;
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            playerEarth.GetComponent<PlayerMovement>().ToggleRagdoll();
+            playerHell.SetActive(!playerHell.activeSelf);
+
+            if (gameState == GameState.ALIVE)
+                gameState = GameState.DEAD;
+            else if (gameState == GameState.DEAD)
+                gameState = GameState.ALIVE;
+        }
     }
 
     void KillPlayer()
@@ -61,7 +73,7 @@ public class GameManager : MonoBehaviour
     // Spawns a player in the underworld
     void GoToHell()
     {
-        Vector3 spawnPos = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, player.transform);
+        Vector3 spawnPos = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, playerEarth.transform);
         deadPlayer = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
     }
