@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private enum GameState { ALIVE, ALIVENT };
-    private GameState gameState = GameState.ALIVE;
+    private enum GameState { ALIVE, DEAD };
+    private GameState gameState = GameState.DEAD;
 
     [Header("Game Rules")]
-    [SerializeField] private float secondsAllowedInHell = 60;
+    [SerializeField] private float secondsAllowedInHell = 20;
     private float timeSpentInHell = 0.0f;
     private float howScrewedAreWe = 0.0f;
+    [SerializeField] private GameObject playerPrefab = null;
 
 
     [Header("Gameplay Information")]
     [SerializeField] private GameObject player = null;
+    private GameObject deadPlayer = null;
+
     [SerializeField] private CameraSystem camRig = null;
+    [SerializeField] private GameObject topLevel = null;
+    [SerializeField] private GameObject bottomLevel = null;
 
     // information used for tracking player properly between alive and dead
 
@@ -32,7 +37,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.ALIVE:
                 break;
-            case GameState.ALIVENT:
+            case GameState.DEAD:
                 timeSpentInHell += Time.deltaTime;
                 howScrewedAreWe = timeSpentInHell / secondsAllowedInHell;
                 camRig.ScreenRatio = Mathf.Lerp(0.5f, 1.0f, howScrewedAreWe);
@@ -44,10 +49,29 @@ public class GameManager : MonoBehaviour
     {
         // TODO: Put earth-side player into dead mode, spawn player on the underside
         // Player.SetAliveState(false);
+
+        GoToHell();
     }
 
     void GameOver()
     {
 
+    }
+
+    // Spawns a player in the underworld
+    void GoToHell()
+    {
+        Vector3 spawnPos = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, player.transform);
+        deadPlayer = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
+
+    }
+
+
+    // From: The point of reference currently used
+    // To: The point of reference to get the equivalent for
+    // Obj - The object whose position is being converted
+    private Vector3 GetEquivalentPosition(Transform from, Transform to, Transform obj)
+    {
+        return to.position + (obj.position - from.position);
     }
 }

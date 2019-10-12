@@ -84,7 +84,7 @@ Skybox:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5029757378562718322}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 0}
+  m_CustomSkybox: {fileID: 2100000, guid: 99f140cd0f4d6fd439739aacfc9f8e80, type: 2}
 --- !u!114 &775154653360062443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ Skybox:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5233388223787991596}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 93bed530f2db2a54eba0ce763b86030e, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 0befe2b3d6f342a459c1aab91987f41b, type: 2}
 --- !u!1 &8479845072586674386
 GameObject:
   m_ObjectHideFlags: 0
