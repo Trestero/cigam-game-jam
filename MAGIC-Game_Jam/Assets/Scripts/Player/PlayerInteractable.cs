@@ -65,7 +65,7 @@ public class PlayerInteractable : MonoBehaviour
     {
         if(interactableNear)
         {
-            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "Press E to use Interactable");
+            //GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "Press E to use Interactable");
         }
     }
 }
