@@ -53,8 +53,7 @@ public class CameraSystem : MonoBehaviour
     private void Move(Vector2 deltaPos)
     {
         transform.Translate(deltaPos);
-        highCameraTransform.Translate(deltaPos);
-        lowCameraTransform.Translate(new Vector2(deltaPos.x, -deltaPos.y));
+        lowCameraTransform.Translate(new Vector2(0, -deltaPos.y));
     }
 
     // Figures out if the tracked object has moved far enough, and moves to match it if needed
