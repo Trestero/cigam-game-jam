@@ -26,7 +26,7 @@ public class Geyser : MonoBehaviour
         else
         {
             gTimer += Time.deltaTime;
-            transform.localScale += new Vector3(0.0f, 0.1f, 0.0f);
+            transform.localScale += new Vector3(0.0f, 5f, 0.0f);
         }
         if(wTimer > waitTime)
         {
