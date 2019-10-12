@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed; //how quickly the player changes their velocity
     [SerializeField] float maxXVelocity; //how fast the player can go
     [SerializeField] float jumpForce;
+    [SerializeField] bool isJumping;
 
     RaycastHit raycastHit;
 
@@ -33,7 +34,16 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space) && raycastHit.collider != null)
         {
-            rigidbody.AddForce(0.0f, jumpForce, 0.0f);
+            if(transform.position.y <= 0.75) //checks if the player is on the ground so isJumping can be set to true
+            {
+                rigidbody.AddForce(0.0f, jumpForce, 0.0f);
+                isJumping = true;
+            }
+        }
+        else if (isJumping && Input.GetKeyUp(KeyCode.Space)) //falls faster if user is not holding jump
+        {
+            isJumping = false;
+            rigidbody.AddForce(0.0f, -jumpForce / 3, 0.0f);
         }
 
 

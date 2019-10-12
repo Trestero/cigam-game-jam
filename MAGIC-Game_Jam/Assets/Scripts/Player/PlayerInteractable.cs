@@ -9,6 +9,8 @@ public class PlayerInteractable : MonoBehaviour
     private bool interactableNear = false;
     private GameObject closest;
 
+    float range = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +25,8 @@ public class PlayerInteractable : MonoBehaviour
         foreach (GameObject interactable in interactables)
         {
             //player is within interactable range
-            if (player.transform.position.x > interactable.transform.position.x - 3 &&
-                player.transform.position.x < interactable.transform.position.x + 3 &&
-                player.transform.position.z > interactable.transform.position.z - 3 &&
-                player.transform.position.z < interactable.transform.position.z + 3)
+            if (player.transform.position.x > interactable.transform.position.x - range &&
+                player.transform.position.x < interactable.transform.position.x + range)
             {
                 interactableNear = true;
 
@@ -43,9 +43,10 @@ public class PlayerInteractable : MonoBehaviour
                 }
 
 
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    interactable.transform.position += new Vector3(1, 0, 0);
+                    //forgive me father, for I have sinned
+                    interactable.GetComponent<Interactible>().SetIsActive(!interactable.GetComponent<Interactible>().GetIsActive());
                 }
             }
             else
