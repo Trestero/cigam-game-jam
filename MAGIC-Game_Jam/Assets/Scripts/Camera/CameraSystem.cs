@@ -10,15 +10,17 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] private Transform lowCameraTransform = null;
     private Camera loCam = null;
 
+    private float topgroundY = 0;
+
     // Stuff related to camera tracking
     [Header("Camera tracking config")]
     [SerializeField] private Transform followTarget = null;
     [SerializeField] private float trackingDeadZone = 1.0f;
-    [SerializeField, Range(0.0f,1.0f)] private float trackingMargin = 0.5f;
+    [SerializeField, Range(0.0f, 1.0f)] private float trackingMargin = 0.5f;
     [SerializeField, Range(0.0f, 2.0f)] private float catchupTime = 0.5f;
     [SerializeField] private float verticalDeadZone = 5.0f;                            // how high from their baseline the player has to be to be for vertical scrolling to occur
     [SerializeField, Range(0.0f, 1.0f)] private float verticalDampening = 0.5f; // how much dampening there is on vertical position
-    private bool moving = false;
+    private bool resetting = false;
 
     private Vector2 hiCamDisplacement;
     private Vector2 loCamDisplacement;
@@ -50,9 +52,10 @@ public class CameraSystem : MonoBehaviour
     // Move methods for continuity between Cameras
     private void Move(Vector2 deltaPos)
     {
-        transform.Translate(deltaPos);
-        highCameraTransform.Translate(deltaPos);
-        lowCameraTransform.Translate(new Vector2(deltaPos.x, -deltaPos.y));
+        transform.Translate(new Vector2(deltaPos.x, 0));
+
+        // offset movement of whichever view the player isn't in
+        //((((Vector2)transform.position).y >= topgroundY) ? lowCameraTransform : highCameraTransform).Translate(new Vector2(0, -deltaPos.y * 2));
     }
 
     // Figures out if the tracked object has moved far enough, and moves to match it if needed
@@ -61,14 +64,11 @@ public class CameraSystem : MonoBehaviour
         target.y = (target.y <= verticalDeadZone) ? 0 : target.y * verticalDampening;
         Vector2 dist = target - (Vector2)transform.position;
 
-        if(moving || dist.sqrMagnitude > (trackingDeadZone * trackingDeadZone))
+        if (dist.sqrMagnitude > (trackingDeadZone * trackingDeadZone))
         {
-            moving = true;
             Vector2 translation = Vector2.Lerp(Vector2.zero, dist, Time.deltaTime / catchupTime);
             Move(translation);
         }
-        // if we made it within the tolerance, stop tracking
-        if (dist.sqrMagnitude < Mathf.Pow((trackingMargin * trackingDeadZone), 2)) moving = false;
     }
 
 }
