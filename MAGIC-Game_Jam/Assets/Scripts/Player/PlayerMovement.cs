@@ -40,11 +40,11 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = true;
             }
         }
-        else if (isJumping && Input.GetKeyUp(KeyCode.Space)) //falls faster if user is not holding jump
+        /*else if (isJumping && Input.GetKeyUp(KeyCode.Space)) //falls faster if user is not holding jump
         {
             isJumping = false;
             rigidbody.AddForce(0.0f, -jumpForce / 3, 0.0f);
-        }
+        }*/
 
 
         ClampVelocity();
