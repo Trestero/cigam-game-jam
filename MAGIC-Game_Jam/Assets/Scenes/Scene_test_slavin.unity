@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6e5b496dc96ce9d46ab6bc0eb44a6bbd,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -826,6 +827,116 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 4725009361866561326, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.06463127
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725009361866561326, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.07962801
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725009361866561326, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0051341206
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398303533743497249, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.06463128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398303533743497249, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.07962797
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398303533743497249, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0051341057
+      objectReference: {fileID: 0}
+    - target: {fileID: 350308633664231004, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.000000021804375
+      objectReference: {fileID: 0}
+    - target: {fileID: 951566333103253229, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.00000032083778
+      objectReference: {fileID: 0}
+    - target: {fileID: 951566333103253229, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.00000002793961
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061806938013047294, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.0000004160646
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061806938013047294, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000000055879217
+      objectReference: {fileID: 0}
+    - target: {fileID: 786994276283658739, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.1648112
+      objectReference: {fileID: 0}
+    - target: {fileID: 786994276283658739, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.07503462
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395935255701466019, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.000000051350888
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395935255701466019, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.049519416
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929078325100270942, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.16481107
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361735029606406480, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.2534894
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361735029606406480, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.00000009313224
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361735029606406480, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000000372529
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386755827875909718, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.25348938
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386755827875909718, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.00000010058285
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386755827875909718, guid: 529bb73b8ab8b904085893810f3f14f4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.000000044703484
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3864292316992592436, guid: 529bb73b8ab8b904085893810f3f14f4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 529bb73b8ab8b904085893810f3f14f4, type: 3}
@@ -1082,13 +1193,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2353732772260522619, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
         type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
+      propertyPath: m_BackGroundColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2353732772260522619, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
         type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 32
+      propertyPath: m_BackGroundColor.g
+      value: 0.24056602
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353732772260522619, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.98731256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba6a2ab7b9545b4aabaade2753b2c12, type: 3}

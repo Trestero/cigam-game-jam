@@ -51,9 +51,14 @@ public class GameManager : MonoBehaviour
             playerHell.SetActive(!playerHell.activeSelf);
 
             if (gameState == GameState.ALIVE)
+            {
                 gameState = GameState.DEAD;
+            }
             else if (gameState == GameState.DEAD)
+            {
                 gameState = GameState.ALIVE;
+                camRig.ScreenRatio = 0.5f;
+            }
         }
     }
 
