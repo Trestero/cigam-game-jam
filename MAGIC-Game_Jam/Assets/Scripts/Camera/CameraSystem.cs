@@ -10,6 +10,7 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] private Transform lowCameraTransform = null;
     private Camera loCam = null;
 
+    [SerializeField] private RectTransform OutputImages = null;
     private float screenRatio = 0.5f;
 
     // Stuff related to camera tracking
@@ -78,8 +79,7 @@ public class CameraSystem : MonoBehaviour
         set
         {
             screenRatio = Mathf.Clamp01(value);
-            hiCam.rect = new Rect(hiCam.rect.x,Mathf.Lerp(0f, 1.0f, screenRatio),hiCam.rect.width,hiCam.rect.height);
-            loCam.rect = new Rect(loCam.rect.x,Mathf.Lerp(-1.0f, 0.0f, screenRatio),loCam.rect.width,loCam.rect.height);
+            OutputImages.anchoredPosition = new Vector2(OutputImages.anchoredPosition.x, Mathf.Lerp(0, 1080, screenRatio));
         }
     }
 }
