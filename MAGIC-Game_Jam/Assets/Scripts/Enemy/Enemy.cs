@@ -5,10 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private enum AIState { Patrol, Pursuit, Return };
-    private AIState mode;
+    private AIState mode = AIState.Patrol;
     private float internalTimer = 0.0f;
     private Animator animController;
-    private Rigidbody rb;
+    //private Rigidbody rb;
 
 
     [Header("Basic")]
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float detectionDistance = 4.0f;
     [SerializeField, Range(15, 90)] private int detectionAngle = 45;
     private bool walking = false;
-    private int nextNode = 0;
+    public int nextNode = 0;
     private Vector2 lastPatrolPoint = Vector2.zero;
 
     [Header("Pursuit")]
@@ -34,7 +34,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         animController = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        //transform.position = new Vector3(path[0].position.x, transform.position.y, transform.position.z);
+        //rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -45,23 +46,23 @@ public class Enemy : MonoBehaviour
             case AIState.Patrol: // AI is patrolling and has not found the player
                 if (path != null)
                 {
-                    if (!walking) // waiting at a patrol point
+                    if (!Walking) // waiting at a patrol point
                     {
                         if (CheckTimer(waitTimeSeconds))
                         {
                             // waited long enough, move to next point
-                            walking = true;
+                            Walking = true;
                         }
                     }
                     else // walking between points
                     {
                         MoveTowards(path[nextNode].position);
-                        if (Vector2.Distance(path[nextNode].position, transform.position) < 0.1)
+                        if (Mathf.Abs((path[nextNode].position - transform.position).x) < 0.1)
                         {
                             // reached goal, stop walking
-                            walking = false;
+                            Walking = false;
                             internalTimer = 0;
-                            ++nextNode;
+                            nextNode = (nextNode + 1) % path.Length;
                         }
                     }
 
@@ -77,39 +78,79 @@ public class Enemy : MonoBehaviour
                 if (!pursuitTarget)
                 {
                     ChangeMode(AIState.Return);
-                    walking = true;
+                    Walking = true;
                 }
                 else
                 {
-                    if (internalTimer > attentionSpan)
+
+                    if ((pursuitTarget.position - transform.position).sqrMagnitude < 1.0f)
+                    {
+                        if (!animController.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+                        {
+                            animController.SetTrigger("attack");
+                        }
+                    }
+                    else
+                    {
+                        MoveTowards(pursuitTarget.position);
+                    }
+                    // see if it should give up on chasing player
+                    if (CheckTimer(attentionSpan))
                     {
                         pursuitTarget = null;
                         ChangeMode(AIState.Return);
+                        Walking = true;
                     }
                 }
                 break;
             case AIState.Return:
                 MoveTowards(lastPatrolPoint);
-                if (Vector2.Distance(lastPatrolPoint, transform.position) < 0.1)
+                if (Mathf.Abs((lastPatrolPoint - (Vector2)transform.position).x) < 0.1)
                 {
-                    // reached goal, stop walking
-                    walking = false;
-                    internalTimer = 0;
-                    ++nextNode;
+                    // reached goal, return to patrol
+                    ChangeMode(AIState.Patrol);
                 }
+
+                // check if player has been spotted
+                //if (DetectPlayer())
+                //{
+                //    ChangeMode(AIState.Pursuit);
+                //}
                 break;
             default:
                 break;
         }
     }
 
+
+    private void Turn(bool right)
+    {
+        Vector3 currentRotation = transform.rotation.eulerAngles;
+        if (right)
+        {
+            currentRotation.y = -90;
+            transform.rotation = Quaternion.Euler(currentRotation);
+        }
+        else
+        {
+            currentRotation.y = 90;
+            transform.rotation = Quaternion.Euler(currentRotation);
+        }
+
+        transform.Rotate(Vector3.up, Mathf.PI);
+    }
+
+    private bool Walking { get { return walking; } set { walking = value; animController.SetBool("isWalking", walking); } }
+
     private void MoveTowards(Vector2 goal)
     {
-        Vector2 dist = path[nextNode].position - transform.position;
+        Vector2 dist = goal - (Vector2)transform.position;
+        Turn((Vector2.Dot(dist, Vector3.right) < 0));
+
         bool left = (dist.x < 0);
 
         // Move towards the goal up to its location
-        transform.position += new Vector3(Mathf.Min(dist.x, Time.deltaTime * walkSpeed * (left ? -1 : 1)), transform.position.y);
+        transform.position += Vector3.right * Mathf.Min(Mathf.Abs(dist.x), Time.deltaTime * walkSpeed) * (left ? -1 : 1);
 
         //rb.velocity = new Vector3((dist.x > 0) ? walkSpeed : -walkSpeed, rb.velocity.y);
     }
@@ -145,7 +186,7 @@ public class Enemy : MonoBehaviour
 
         // cull by 4 methods:
         // 1 - stealth
-        if (!gm.IsInStealth()) return false;
+        if (gm.IsInStealth()) return false;
         // 2 - distance
         if (distToPlayer.sqrMagnitude > (detectionDistance * detectionDistance)) return false;
         // 3 - angle
@@ -164,8 +205,11 @@ public class Enemy : MonoBehaviour
     {
         if (eyes)
         {
-            Debug.DrawRay(eyes.position, eyes.position + (Quaternion.AngleAxis(Mathf.Deg2Rad * detectionAngle / 2, Vector3.forward) * (eyes.forward)));
-            Debug.DrawRay(eyes.position, eyes.position + (Quaternion.AngleAxis(Mathf.Deg2Rad * -detectionAngle / 2, Vector3.forward) * (eyes.forward)));
+            Vector3 d1 = (Quaternion.AngleAxis(detectionAngle / 2, Vector3.forward) * (eyes.forward)) * detectionDistance;
+            Vector3 d2 = (Quaternion.AngleAxis(-detectionAngle / 2, Vector3.forward) * (eyes.forward)) * detectionDistance;
+            Debug.DrawRay(eyes.position, d1);
+            Debug.DrawRay(eyes.position, d2);
+            Debug.DrawRay(eyes.position + d1, (d2 - d1));
         }
     }
 }
