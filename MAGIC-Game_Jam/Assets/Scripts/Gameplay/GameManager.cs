@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,17 +30,45 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject topLevel = null;
     [SerializeField] private GameObject bottomLevel = null;
 
+    [SerializeField] private PostProcessProfile ppp = null;
+    private Vignette vignette;
+    private float vignetteMax = 0.5f;
+
+    private Grain grain;
+    private float grainMax = 1.0f;
+
+    private Bloom bloom;
+    private float bloomMax = 20.0f;
+
+    private ColorGrading colorGrading;
+    private float hueShiftValue = 0.0f;
+
     // information used for tracking player properly between alive and dead
 
     // Start is called before the first frame update
     void Start()
     {
         playerEarthPosition = playerEarth.transform.position;
+
+        //Get and reset post processing values
+        vignette = ppp.GetSetting<Vignette>();
+        vignette.intensity.Override(0.0f);
+
+        grain = ppp.GetSetting<Grain>();
+        grain.intensity.Override(0.0f);
+
+        bloom = ppp.GetSetting<Bloom>();
+        bloom.intensity.Override(4.0f);
+
+        colorGrading = ppp.GetSetting<ColorGrading>();
+        colorGrading.hueShift.Override(0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("HOW SCREWED WE ARE: " + howScrewedAreWe);
+
         switch (gameState)
         {
             case GameState.ALIVE:
@@ -56,15 +85,17 @@ public class GameManager : MonoBehaviour
             playerEarth.GetComponent<PlayerMovement>().ToggleRagdoll();
             playerHell.SetActive(!playerHell.activeSelf);
 
-            //If player is currently alive, record current pos and switch to dead
+            //If player is currently alive, record current pos and set camera follow target to hell player
             if (gameState == GameState.ALIVE)
             {
                 playerEarthPosition = playerEarth.transform.position;
                 gameState = GameState.DEAD;
 
                 playerEarth.GetComponent<PlayerMovement>().enabled = false;
+
+                camRig.SetFollowTarget(playerHell.transform);
             }
-            //If player is currently dead, set the earth player back to the last recorded pos, and set state to alive
+            //If player is currently dead, set the earth player back to the last recorded pos, and set camera follow target to earth player
             else if (gameState == GameState.DEAD)
             {
                 gameState = GameState.ALIVE;
@@ -72,6 +103,8 @@ public class GameManager : MonoBehaviour
                 camRig.ScreenRatio = 0.5f;
 
                 playerEarth.GetComponent<PlayerMovement>().enabled = true;
+
+                camRig.SetFollowTarget(playerEarth.transform);
             }
         }
 
@@ -106,6 +139,18 @@ public class GameManager : MonoBehaviour
                 stealthCooldown = false;
             }
         }
+
+        //Post Processing
+        float lerpValue = (camRig.ScreenRatio - 0.5f) * 2.0f;
+        vignette.intensity.Override(Mathf.Lerp(0.0f, vignetteMax, lerpValue));
+        grain.intensity.Override(Mathf.Lerp(0.0f, grainMax, lerpValue));
+        bloom.intensity.Override(Mathf.Lerp(4.0f, bloomMax, lerpValue));
+
+        //Hue shift fun
+        /*hueShiftValue += 01f;
+        if (hueShiftValue >= 180.0f)
+            hueShiftValue = -180.0f;
+        colorGrading.hueShift.Override(hueShiftValue);*/
     }
 
     public bool IsInStealth()

@@ -96,4 +96,9 @@ public class CameraSystem : MonoBehaviour
             outputImages.anchoredPosition = new Vector2(outputImages.anchoredPosition.x, Mathf.Lerp(-540, 540, screenRatio));
         }
     }
+
+    public void SetFollowTarget(Transform newTarget)
+    {
+        followTarget = newTarget;
+    }
 }
