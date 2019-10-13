@@ -6,8 +6,9 @@ public class MovingPlatform : MonoBehaviour
 {
     Vector3[] bounds;
     [SerializeField] float speed;
-    Vector3 direction;
     GameObject player;
+    float timer = 0;
+    bool lerpUp = true;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +19,8 @@ public class MovingPlatform : MonoBehaviour
         bounds[1] = transform.parent.GetChild(1).transform.position;
 
         //snap platform to the center point of it's movement
-        Vector3 startingPos = (bounds[0] + bounds[1]) / 2;
+        Vector3 startingPos = bounds[0];
         transform.position = startingPos;
-
-        direction = Vector3.Normalize(bounds[1] - transform.position);
-
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -34,16 +32,21 @@ public class MovingPlatform : MonoBehaviour
 
     public void Move()
     {
-        //past bounds
-        if(!(transform.position.x > bounds[0].x && transform.position.x < bounds[1].x))
+        if (lerpUp)
         {
-            Debug.Log("lower: " + bounds[0]);
-            Debug.Log("upper: " + bounds[1]);
-            Debug.Log("position: " + transform.position);
-            direction *= -1;
+            timer += Time.deltaTime * speed;
+        }
+        else
+        {
+            timer -= Time.deltaTime * speed;
+        }
+        transform.position = Vector3.Lerp(bounds[0], bounds[1], timer);
+
+        if(timer >= 1 || timer <= 0)
+        {
+            lerpUp = !lerpUp;
         }
 
-        transform.position += direction * speed;
     }
 
     private void OnCollisionEnter(Collision collision)
