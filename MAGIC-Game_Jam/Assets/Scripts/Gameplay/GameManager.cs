@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
             {
                 playerEarthPosition = playerEarth.transform.position;
                 gameState = GameState.DEAD;
+
+                playerEarth.GetComponent<PlayerMovement>().enabled = false;
             }
             //If player is currently dead, set the earth player back to the last recorded pos, and set state to alive
             else if (gameState == GameState.DEAD)
@@ -67,6 +69,8 @@ public class GameManager : MonoBehaviour
                 gameState = GameState.ALIVE;
                 playerEarth.transform.position = playerEarthPosition;
                 camRig.ScreenRatio = 0.5f;
+
+                playerEarth.GetComponent<PlayerMovement>().enabled = true;
             }
         }
 
