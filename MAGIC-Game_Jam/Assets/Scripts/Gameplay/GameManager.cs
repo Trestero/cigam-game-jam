@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerHell = null;
     private GameObject deadPlayer = null;
     private Vector3 playerEarthPosition;
+    private float timer = 0.0f;
+    private float stealthTime = 2.0f;
+    private bool stealth = false;
+    private bool stealthCooldown = false;
 
     [SerializeField] private CameraSystem camRig = null;
     [SerializeField] private GameObject topLevel = null;
@@ -63,6 +67,28 @@ public class GameManager : MonoBehaviour
                 gameState = GameState.ALIVE;
                 playerEarth.transform.position = playerEarthPosition;
                 camRig.ScreenRatio = 0.5f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && stealth == false && stealthCooldown == false && timer == 0.0f)
+        {
+            stealth = true;
+        }
+        if(stealth || stealthCooldown)
+        {
+            timer += Time.deltaTime;
+        }
+        if(timer >= stealthTime)
+        {
+            timer = 0.0f;
+            if(stealth == true)
+            {
+                stealth = false;
+                stealthCooldown = true;
+            }
+            else //cooldown done
+            {
+                stealthCooldown = false;
             }
         }
     }
