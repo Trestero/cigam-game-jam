@@ -116,9 +116,9 @@ public class GameManager : MonoBehaviour
         GoToHell();
     }
 
-    void GameOver()
+    public void GameOver()
     {
-
+        Debug.Log("ya ded");
     }
 
     // Spawns a player in the underworld

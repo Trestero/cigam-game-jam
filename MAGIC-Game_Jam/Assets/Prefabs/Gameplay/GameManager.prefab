@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8205566188876973693}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b851fcd4616ea4e869f392c58a1a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsAllowedInHell: 60
-  player: {fileID: 0}
+  secondsAllowedInHell: 20
+  playerPrefab: {fileID: 0}
+  playerEarth: {fileID: 0}
+  playerHell: {fileID: 0}
   camRig: {fileID: 0}
+  topLevel: {fileID: 0}
+  bottomLevel: {fileID: 0}
