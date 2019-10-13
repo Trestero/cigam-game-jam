@@ -12,7 +12,6 @@ public class SoftDirt : Interactible
     [SerializeField] float pushMultiplier = 1;
     [SerializeField] float pushThreshold = 0.01f;
     float speed;
-    bool shrinking = false;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -31,13 +30,12 @@ public class SoftDirt : Interactible
     protected override void Update()
     {
         base.Update();
-
+        Debug.Log(speed);
         if(speed < -pushThreshold)
         {
             Debug.Log(speed);
             scale.z += speed * pushMultiplier;
             other.SetZScale(other.GetZScale() - speed * 1.5f);
-            speed = 0;
         }
 
         if (scale.z != transform.localScale.z)
@@ -45,26 +43,19 @@ public class SoftDirt : Interactible
             Debug.Log("changing scales");
             transform.localScale = scale;
         }
+        speed = 0;
     }
 
     protected override void UseInteractible()
     {
-        if (transform.localScale.z > 0)
-        {
-            shrinking = true;
-        }
-        else
-        {
-            shrinking = false;
-        }
+
     }
 
-    protected override void OnTriggerEnter(Collider other)
+    protected void OnCollisionEnter(Collision col)
     {
-        if (other.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
-            Debug.Log(speed);
-            speed = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().velocity.y;
+            speed = -GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetLandingVelocity();
         }
     }
 }
