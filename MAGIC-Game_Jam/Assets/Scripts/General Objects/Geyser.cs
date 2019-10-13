@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Geyser : MonoBehaviour
 {
+    private float timer = 0.0f;
+    private float actionTime = 2.0f;
+    private int option = 0;
+
     private float waitTime = 1.5f;
     private float wTimer = 0.0f;
-    private float geyserTime = 2.0f;
+    private float geyserUpTime = 2.0f;
+    private float geyserDownTime = 2.0f;
     private float gTimer = 0.0f;
     private bool isActivate = false;
 
@@ -19,24 +24,26 @@ public class Geyser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isActivate)
+        timer += Time.deltaTime;
+        if (option == 1) //rising up
         {
-            wTimer += Time.deltaTime;
+            transform.localScale += new Vector3(0.0f, 0.0f, 2f);
         }
-        else
+        else if (option >= 2) //going down
         {
-            gTimer += Time.deltaTime;
-            transform.localScale += new Vector3(0.0f, 5f, 0.0f);
+            transform.localScale -= new Vector3(0.0f, 0.0f, 2f);
         }
-        if(wTimer > waitTime)
+        if (timer > actionTime)
         {
-            wTimer -= waitTime;
-            isActivate = true;
-        }
-        if (gTimer > geyserTime)
-        {
-            gTimer -= geyserTime;
-            isActivate = false;
+            if(option >= 2)
+            {
+                option = 0; //waiting
+            }
+            else
+            {
+                option++;
+            }
+            timer -= actionTime;
         }
     }
 }
