@@ -5,7 +5,7 @@ using UnityEngine;
 public class Geyser : MonoBehaviour
 {
     private float timer = 0.0f;
-    private float actionTime = 2.0f;
+    [SerializeField] private float actionTime = 2.0f;
     private int option = 0;
 
     // Start is called before the first frame update
