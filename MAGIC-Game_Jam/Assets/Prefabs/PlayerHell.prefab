@@ -789,14 +789,14 @@ GameObject:
   - component: {fileID: 8629193408888288565}
   - component: {fileID: 6044641237437172167}
   - component: {fileID: 1434710791616417460}
-  - component: {fileID: 500068982644383364}
+  - component: {fileID: 7640011564922590074}
   m_Layer: 10
   m_Name: PlayerHell
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5814511597119076162
 Transform:
   m_ObjectHideFlags: 0
@@ -805,7 +805,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4891060623577308949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33221197, y: 1.0403149, z: -0.8433304}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3795590964418231347}
@@ -862,9 +862,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.30539483
-  m_Height: 2.0842564
+  m_Height: 1.9430335
   m_Direction: 1
-  m_Center: {x: -0.01461184, y: 1.1769756, z: 0}
+  m_Center: {x: -0.01461184, y: 0.94381464, z: 0}
 --- !u!1001 &3800099051243963879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -886,7 +886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4516979631634900, guid: c3b5979cdf315164681df5c9d08153a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.308
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4516979631634900, guid: c3b5979cdf315164681df5c9d08153a4, type: 3}
       propertyPath: m_LocalPosition.z
