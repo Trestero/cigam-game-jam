@@ -17,20 +17,23 @@ public class PushyBox : Interactible
     protected override void Update()
     {
         base.Update();
+        if (!isActive)
+        {
+            transform.SetParent(null);
+        }
     }
 
     protected override void UseInteractible()
     {
-        if (transform.parent == null)
+        if (isActive)
         {
             //transform.SetParent(player.transform);
-            transform.parent = player.transform;
+            transform.SetParent(player.transform);
         }
-        else if(transform.parent.tag == "Player")
-        {
-            Debug.Log("why not work?");
-            //transform.SetParent(null);
-            transform.parent = null;
-        }
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+
     }
 }
