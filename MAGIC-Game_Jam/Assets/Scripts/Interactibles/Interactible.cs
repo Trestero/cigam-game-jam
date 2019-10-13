@@ -11,6 +11,7 @@ public abstract class Interactible : MonoBehaviour
     protected bool playerInTrigger;
 
     BoxCollider trigger;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -26,8 +27,11 @@ public abstract class Interactible : MonoBehaviour
         }
         if(playerInTrigger && isActive)
         {
+            Debug.Log("hey im calling it");
             UseInteractible();
         }
+
+        Debug.Log("wtf: " + playerInTrigger);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -35,10 +39,6 @@ public abstract class Interactible : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             playerInTrigger = true;
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                isActive = !isActive;
-            }
         }
     }
 
