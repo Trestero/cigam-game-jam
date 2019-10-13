@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-
+                    // attack if close enough
                     if ((pursuitTarget.position - transform.position).sqrMagnitude < 1.0f)
                     {
                         if (!animController.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
@@ -95,7 +95,8 @@ public class Enemy : MonoBehaviour
                         MoveTowards(pursuitTarget.position);
                     }
                     // see if it should give up on chasing player
-                    if (CheckTimer(attentionSpan))
+                    GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+                    if (((gm) && gm.IsInStealth()) || CheckTimer(attentionSpan))
                     {
                         pursuitTarget = null;
                         ChangeMode(AIState.Return);
