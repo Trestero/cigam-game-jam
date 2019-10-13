@@ -7,6 +7,8 @@ public class MovingPlatform : MonoBehaviour
     Vector3[] bounds;
     [SerializeField] float speed;
     Vector3 direction;
+    GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class MovingPlatform : MonoBehaviour
         transform.position = startingPos;
 
         direction = Vector3.Normalize(bounds[1] - transform.position);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -40,5 +44,15 @@ public class MovingPlatform : MonoBehaviour
         }
 
         transform.position += direction * speed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        player.transform.SetParent(transform);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        player.transform.parent = null;
     }
 }
