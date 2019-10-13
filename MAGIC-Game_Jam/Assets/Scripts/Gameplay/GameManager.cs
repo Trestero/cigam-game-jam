@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
                 gameState = GameState.DEAD;
 
                 playerEarth.GetComponent<PlayerMovement>().enabled = false;
-
+                GoToHell();
                 camRig.SetFollowTarget(playerHell.transform);
             }
             //If player is currently dead, set the earth player back to the last recorded pos, and set camera follow target to earth player
@@ -187,8 +187,8 @@ public class GameManager : MonoBehaviour
     void GoToHell()
     {
         Vector3 spawnPos = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, playerEarth.transform);
-        deadPlayer = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
-
+        //deadPlayer = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
+        playerHell.transform.position = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, playerEarth.transform);
     }
 
 
