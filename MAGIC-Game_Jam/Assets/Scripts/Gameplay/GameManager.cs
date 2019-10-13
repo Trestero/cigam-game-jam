@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         GoToHell();
     }
 
-    void GameOver()
+    public void GameOver()
     {
 
     }
