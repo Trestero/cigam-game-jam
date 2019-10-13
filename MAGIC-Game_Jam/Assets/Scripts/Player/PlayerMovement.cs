@@ -30,11 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         RaycastHit raycastHit;
-        //This raycast is using a sphere collider for max distance, will probably have to change when model comes in
-        if(Physics.Raycast(transform.position, Vector3.down, out raycastHit, 0.2f))
-        {
-            Debug.Log(raycastHit.collider);
-        }
+        Physics.Raycast(transform.position, Vector3.down, out raycastHit, 0.2f);
         Vector3 currentRotation = transform.rotation.eulerAngles;
 
         if (Input.GetKey(KeyCode.A))
@@ -66,7 +62,8 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("IsWalking", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && raycastHit.collider != null)
+        //if (Input.GetKeyDown(KeyCode.Space) && raycastHit.collider != null)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             rigidbody.AddForce(0.0f, jumpForce, 0.0f);
         }
