@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-
+        Debug.Log("ya ded");
     }
 
     // Spawns a player in the underworld

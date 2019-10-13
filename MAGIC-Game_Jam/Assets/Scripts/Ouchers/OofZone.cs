@@ -20,7 +20,7 @@ public class OofZone : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().GameOver();
         }
     }
 }
