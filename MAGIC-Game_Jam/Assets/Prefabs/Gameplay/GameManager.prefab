@@ -47,6 +47,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 0}
   playerEarth: {fileID: 0}
   playerHell: {fileID: 0}
+  playerHellMat: {fileID: 2100000, guid: 296886035a06fbd4380c672c30909a4e, type: 2}
   camRig: {fileID: 0}
   topLevel: {fileID: 0}
   bottomLevel: {fileID: 0}
