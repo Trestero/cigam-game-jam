@@ -149,6 +149,23 @@ public class GameManager : MonoBehaviour
         colorGrading.hueShift.Override(hueShiftValue);*/
     }
 
+    public bool IsInStealth()
+    {
+        return stealth;
+    }
+
+    public Transform GetPlayer()
+    {
+        if(gameState == GameState.ALIVE)
+        {
+            return playerEarth.transform;
+        }
+        else
+        {
+            return playerHell.transform;
+        }
+    }
+
     void KillPlayer()
     {
         // TODO: Put earth-side player into dead mode, spawn player on the underside
