@@ -12,8 +12,8 @@ public class MovingPlatform : MonoBehaviour
     {
         //get positions of the bounds
         bounds = new Vector3[2];
-        bounds[0] = gameObject.GetComponentInParent<Transform>().position;
-        bounds[1] = transform.parent.GetChild(0).transform.position;
+        bounds[0] = transform.parent.GetChild(0).transform.position;
+        bounds[1] = transform.parent.GetChild(1).transform.position;
 
         //snap platform to the center point of it's movement
         Vector3 startingPos = (bounds[0] + bounds[1]) / 2;

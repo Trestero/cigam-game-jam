@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushMultiplier: 3
-  pushThreshold: 0.8
+  pushThreshold: 7
 --- !u!54 &6979259378728727918
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushMultiplier: 3
-  pushThreshold: 0.8
+  pushThreshold: 7
 --- !u!1 &6979259377496966350
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 794bfed571a80194ba8f4d162c30deae,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 150
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794bfed571a80194ba8f4d162c30deae, type: 3}
@@ -300,7 +300,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 794bfed571a80194ba8f4d162c30deae,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 300
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794bfed571a80194ba8f4d162c30deae, type: 3}

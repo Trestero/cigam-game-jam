@@ -52,9 +52,8 @@ public class SoftDirt : Interactible
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Player on soft dirt");
             speed = -col.gameObject.GetComponent<PlayerMovement>().GetLandingVelocity();
-            //Debug.Log(speed);
+            Debug.Log(speed);
         }
     }
 }
