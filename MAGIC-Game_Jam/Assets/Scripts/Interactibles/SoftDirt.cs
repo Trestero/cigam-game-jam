@@ -30,17 +30,14 @@ public class SoftDirt : Interactible
     protected override void Update()
     {
         base.Update();
-        Debug.Log(speed);
-        if(speed < -pushThreshold)
+        if(speed > pushThreshold && scale.z > 0)
         {
-            Debug.Log(speed);
-            scale.z += speed * pushMultiplier;
-            other.SetZScale(other.GetZScale() - speed * 1.5f);
+            scale.z -= speed * pushMultiplier;
+            other.SetZScale(other.GetZScale() + speed * pushMultiplier);
         }
 
         if (scale.z != transform.localScale.z)
         {
-            Debug.Log("changing scales");
             transform.localScale = scale;
         }
         speed = 0;
@@ -55,7 +52,8 @@ public class SoftDirt : Interactible
     {
         if (col.gameObject.tag == "Player")
         {
-            speed = -GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetLandingVelocity();
+            speed = -col.gameObject.GetComponent<PlayerMovement>().GetLandingVelocity();
+            Debug.Log(speed);
         }
     }
 }

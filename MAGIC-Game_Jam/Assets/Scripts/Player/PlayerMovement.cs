@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
 
     Collider[] charColliders; //Colliders used for ragdoll
+    Rigidbody[] charRBs;
     Animator anim;
 
     
@@ -22,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody>();
 
         charColliders = GetComponentsInChildren<Collider>();
+        charRBs = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in charRBs)
+        {
+            rb.isKinematic = false;
+        }
         anim = GetComponentInChildren<Animator>();
         ToggleRagdoll();
     }
@@ -30,11 +36,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         RaycastHit raycastHit;
-        //This raycast is using a sphere collider for max distance, will probably have to change when model comes in
-        if(Physics.Raycast(transform.position, Vector3.down, out raycastHit, 0.2f))
-        {
-            Debug.Log(raycastHit.collider);
-        }
+        Physics.Raycast(transform.position, Vector3.down, out raycastHit, 0.2f);
         Vector3 currentRotation = transform.rotation.eulerAngles;
 
         if (Input.GetKey(KeyCode.A))
@@ -66,7 +68,8 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("IsWalking", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && raycastHit.collider != null)
+        //if (Input.GetKeyDown(KeyCode.Space) && raycastHit.collider != null)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             rigidbody.AddForce(0.0f, jumpForce, 0.0f);
         }
@@ -104,5 +107,11 @@ public class PlayerMovement : MonoBehaviour
 
         //Toggle animator
         anim.enabled = !anim.enabled;
+
+
+        for (int i = 1; i < charRBs.Length; i++)
+        {
+            charRBs[i].isKinematic = !charRBs[i].isKinematic;
+        }
     }
 }
