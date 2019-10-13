@@ -39,4 +39,12 @@ public class Geyser : MonoBehaviour
             timer -= actionTime;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(option >= 1) //active
+        {
+            GameObject.Find("GameManager").GetComponent<GameManager>().GameOver(); //haha you lose idiot
+        }
+    }
 }
