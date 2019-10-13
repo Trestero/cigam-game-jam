@@ -62,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("IsWalking", false);
         }
 
-        //if (Input.GetKeyDown(KeyCode.Space) && raycastHit.collider != null)
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && raycastHit.collider != null)
+        //if(Input.GetKeyDown(KeyCode.Space))
         {
             rigidbody.AddForce(0.0f, jumpForce, 0.0f);
         }
