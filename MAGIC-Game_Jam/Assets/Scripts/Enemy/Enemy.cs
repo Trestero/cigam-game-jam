@@ -73,6 +73,10 @@ public class Enemy : MonoBehaviour
                         ChangeMode(AIState.Pursuit);
                     }
                 }
+                else
+                {
+                    Walking = false;
+                }
                 break;
             case AIState.Pursuit:
                 if (!pursuitTarget)
