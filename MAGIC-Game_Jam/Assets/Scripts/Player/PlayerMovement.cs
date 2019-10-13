@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log(raycastHit.collider);
         }
-        Debug.DrawLine(transform.position, transform.position - new Vector3(0.0f, 0.1f + rigidbody.velocity.y, 0.0f));
         Vector3 currentRotation = transform.rotation.eulerAngles;
 
         if (Input.GetKey(KeyCode.A))
