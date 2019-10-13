@@ -10,8 +10,10 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] private Transform lowCameraTransform = null;
     private Camera loCam = null;
 
-    [SerializeField] private RectTransform OutputImages = null;
+    [SerializeField] private RectTransform outputImages = null;
+    [SerializeField, Range(0.0f, 2.0f)] private float screenRatioAdjustmentTime = 0.5f;
     private float screenRatio = 0.5f;
+    private float screenRatioGoal = 0.5f;
 
     // Stuff related to camera tracking
     [Header("Camera tracking config")]
@@ -48,6 +50,7 @@ public class CameraSystem : MonoBehaviour
             Rigidbody rb = followTarget.GetComponent<Rigidbody>();
             MoveTowards((rb == null) ? followTarget.position : followTarget.position + (rb.velocity * catchupTime));
         }
+        AdjustScreenRatio();
     }
 
     // Move methods for continuity between Cameras
@@ -78,8 +81,19 @@ public class CameraSystem : MonoBehaviour
         get { return screenRatio; }
         set
         {
-            screenRatio = Mathf.Clamp01(value);
-            OutputImages.anchoredPosition = new Vector2(OutputImages.anchoredPosition.x, Mathf.Lerp(0, 1080, screenRatio));
+            screenRatioGoal = Mathf.Clamp01(value);
+        }
+    }
+
+    private void AdjustScreenRatio()
+    {
+        if (screenRatio != screenRatioGoal)
+        {
+            screenRatio = Mathf.Clamp01(Mathf.Lerp(screenRatio,screenRatioGoal,Time.deltaTime / screenRatioAdjustmentTime));
+
+            outputImages.GetChild(0).localScale = new Vector3(1,1-screenRatio,1);
+            outputImages.GetChild(1).localScale = new Vector3(1, screenRatio, 1);
+            outputImages.anchoredPosition = new Vector2(outputImages.anchoredPosition.x, Mathf.Lerp(-540, 540, screenRatio));
         }
     }
 }

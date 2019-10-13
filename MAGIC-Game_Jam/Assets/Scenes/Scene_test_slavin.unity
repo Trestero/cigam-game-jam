@@ -1141,6 +1141,11 @@ PrefabInstance:
       propertyPath: followTarget
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5208505581928430432, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
+        type: 3}
+      propertyPath: screenRatioAdjustmentTime
+      value: 0.323
+      objectReference: {fileID: 0}
     - target: {fileID: 6443538774630687997, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -1285,6 +1290,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0.98731256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545496978524060583, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712221545210209445, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba6a2ab7b9545b4aabaade2753b2c12, type: 3}
