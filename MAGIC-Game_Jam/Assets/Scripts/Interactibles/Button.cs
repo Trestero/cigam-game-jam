@@ -6,6 +6,16 @@ public class Button : Interactible
 {
     [SerializeField] GameObject platform;
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
     protected override void UseInteractible()
     {
         platform.GetComponent<MovingPlatform>().Move();

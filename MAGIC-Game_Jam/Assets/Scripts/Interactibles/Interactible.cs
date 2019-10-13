@@ -10,11 +10,10 @@ public abstract class Interactible : MonoBehaviour
 
     protected bool playerInTrigger;
 
-    BoxCollider trigger;
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        trigger = gameObject.GetComponent<BoxCollider>();
+
     }
 
     // Update is called once per frame
@@ -24,10 +23,13 @@ public abstract class Interactible : MonoBehaviour
         {
             isActive = !isActive;
         }
-        if(playerInTrigger && isActive)
+        if(isActive)
         {
             UseInteractible();
         }
+
+        Debug.Log("Is Active: " + isActive);
+        Debug.Log("In trigger: " + playerInTrigger);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -35,15 +37,12 @@ public abstract class Interactible : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             playerInTrigger = true;
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                isActive = !isActive;
-            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
+        Debug.Log("oh ok bye");
         if(other.gameObject.tag == "Player")
         {
             playerInTrigger = false;
