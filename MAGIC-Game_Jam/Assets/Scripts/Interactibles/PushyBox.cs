@@ -26,7 +26,7 @@ public class PushyBox : Interactible
             //transform.SetParent(player.transform);
             transform.parent = player.transform;
         }
-        else
+        else if(transform.parent.tag == "Player")
         {
             Debug.Log("why not work?");
             //transform.SetParent(null);

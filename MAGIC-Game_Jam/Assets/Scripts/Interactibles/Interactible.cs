@@ -27,11 +27,8 @@ public abstract class Interactible : MonoBehaviour
         }
         if(playerInTrigger && isActive)
         {
-            Debug.Log("hey im calling it");
             UseInteractible();
         }
-
-        Debug.Log("wtf: " + playerInTrigger);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
