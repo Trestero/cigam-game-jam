@@ -85,15 +85,17 @@ public class GameManager : MonoBehaviour
             playerEarth.GetComponent<PlayerMovement>().ToggleRagdoll();
             playerHell.SetActive(!playerHell.activeSelf);
 
-            //If player is currently alive, record current pos and switch to dead
+            //If player is currently alive, record current pos and set camera follow target to hell player
             if (gameState == GameState.ALIVE)
             {
                 playerEarthPosition = playerEarth.transform.position;
                 gameState = GameState.DEAD;
 
                 playerEarth.GetComponent<PlayerMovement>().enabled = false;
+
+                camRig.SetFollowTarget(playerHell.transform);
             }
-            //If player is currently dead, set the earth player back to the last recorded pos, and set state to alive
+            //If player is currently dead, set the earth player back to the last recorded pos, and set camera follow target to earth player
             else if (gameState == GameState.DEAD)
             {
                 gameState = GameState.ALIVE;
@@ -101,6 +103,8 @@ public class GameManager : MonoBehaviour
                 camRig.ScreenRatio = 0.5f;
 
                 playerEarth.GetComponent<PlayerMovement>().enabled = true;
+
+                camRig.SetFollowTarget(playerEarth.transform);
             }
         }
 
