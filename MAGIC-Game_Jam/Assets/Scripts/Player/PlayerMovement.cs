@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //This raycast is using a sphere collider for max distance, will probably have to change when model comes in
         Physics.Raycast(transform.position, Vector3.down, out raycastHit, 0.1f + rigidbody.velocity.y);
-        Debug.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y + rigidbody.velocity.y + 0.1f, transform.position.z));
 
         Vector3 currentRotation = transform.rotation.eulerAngles;
 
