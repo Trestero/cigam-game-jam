@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay Information")]
     [SerializeField] private GameObject playerEarth = null;
     [SerializeField] private GameObject playerHell = null;
+    [SerializeField] private Material playerHellMat = null;
     private GameObject deadPlayer = null;
     private Vector3 playerEarthPosition;
     private float timer = 0.0f;
@@ -74,9 +75,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && stealth == false && stealthCooldown == false && timer == 0.0f)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && stealth == false && stealthCooldown == false && timer == 0.0f && gameState == GameState.DEAD)
         {
             stealth = true;
+
+            //Make player transparent
+            Color playerColor = playerHellMat.GetColor("_ContourColor");
+            playerColor.a = 0.2f;
+            playerHellMat.SetColor("_ContourColor", playerColor);
         }
         if(stealth || stealthCooldown)
         {
@@ -89,6 +95,11 @@ public class GameManager : MonoBehaviour
             {
                 stealth = false;
                 stealthCooldown = true;
+
+                //Make player Opaque
+                Color playerColor = playerHellMat.GetColor("_ContourColor");
+                playerColor.a = 1.0f;
+                playerHellMat.SetColor("_ContourColor", playerColor);
             }
             else //cooldown done
             {
