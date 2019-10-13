@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Contour Drawing
+  m_Name: Player Earth
   m_Shader: {fileID: 4800000, guid: d76e063479d724a45a6f7025c90eff39, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
