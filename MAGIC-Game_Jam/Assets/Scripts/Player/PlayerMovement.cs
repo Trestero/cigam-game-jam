@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Collider[] charColliders; //Colliders used for ragdoll
     Animator anim;
 
-    RaycastHit raycastHit;
+    
     float landingVelocity;
     public float GetLandingVelocity() { return landingVelocity; }
 
@@ -29,9 +29,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RaycastHit raycastHit;
         //This raycast is using a sphere collider for max distance, will probably have to change when model comes in
-        Physics.Raycast(transform.position, Vector3.down, out raycastHit, 0.1f + rigidbody.velocity.y);
-
+        if(Physics.Raycast(transform.position, Vector3.down, out raycastHit, 0.2f))
+        {
+            Debug.Log(raycastHit.collider);
+        }
+        Debug.DrawLine(transform.position, transform.position - new Vector3(0.0f, 0.1f + rigidbody.velocity.y, 0.0f));
         Vector3 currentRotation = transform.rotation.eulerAngles;
 
         if (Input.GetKey(KeyCode.A))
