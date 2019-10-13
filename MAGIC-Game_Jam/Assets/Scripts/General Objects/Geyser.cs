@@ -8,13 +8,6 @@ public class Geyser : MonoBehaviour
     private float actionTime = 2.0f;
     private int option = 0;
 
-    private float waitTime = 1.5f;
-    private float wTimer = 0.0f;
-    private float geyserUpTime = 2.0f;
-    private float geyserDownTime = 2.0f;
-    private float gTimer = 0.0f;
-    private bool isActivate = false;
-
     // Start is called before the first frame update
     void Start()
     {
