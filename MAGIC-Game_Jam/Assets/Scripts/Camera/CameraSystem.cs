@@ -50,7 +50,8 @@ public class CameraSystem : MonoBehaviour
             Rigidbody rb = followTarget.GetComponent<Rigidbody>();
             MoveTowards((rb == null) ? followTarget.position : followTarget.position + (rb.velocity * catchupTime));
         }
-        AdjustScreenRatio();
+
+        if(screenRatio != screenRatioGoal) AdjustScreenRatio();
     }
 
     // Move methods for continuity between Cameras
@@ -85,16 +86,20 @@ public class CameraSystem : MonoBehaviour
         }
     }
 
+    public void HardSetScreenRatio(float val)
+    {
+        screenRatio = Mathf.Clamp01(val);
+        screenRatioGoal = screenRatio;
+        AdjustScreenRatio();
+    }
+
     private void AdjustScreenRatio()
     {
-        if (screenRatio != screenRatioGoal)
-        {
             screenRatio = Mathf.Clamp01(Mathf.Lerp(screenRatio,screenRatioGoal,Time.deltaTime / screenRatioAdjustmentTime));
 
             outputImages.GetChild(0).localScale = new Vector3(1,1-screenRatio,1);
             outputImages.GetChild(1).localScale = new Vector3(1, screenRatio, 1);
             outputImages.anchoredPosition = new Vector2(outputImages.anchoredPosition.x, Mathf.Lerp(-540, 540, screenRatio));
-        }
     }
 
     public void SetFollowTarget(Transform newTarget)

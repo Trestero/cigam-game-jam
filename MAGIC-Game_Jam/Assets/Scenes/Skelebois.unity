@@ -2835,21 +2835,6 @@ PrefabInstance:
       propertyPath: followTarget
       value: 
       objectReference: {fileID: 459163117}
-    - target: {fileID: 4208596718218309400, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4208596718218309400, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4208596718218309400, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6443538774630687997, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -2890,6 +2875,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4208596718218309400, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208596718218309400, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208596718218309400, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3203636533361031899, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -2909,16 +2909,6 @@ PrefabInstance:
         type: 3}
       propertyPath: orthographic
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4025382763971188264, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 279
-      objectReference: {fileID: 0}
-    - target: {fileID: 431741478739554791, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 279
       objectReference: {fileID: 0}
     - target: {fileID: 982664770364487838, guid: 0ba6a2ab7b9545b4aabaade2753b2c12,
         type: 3}

@@ -27,9 +27,6 @@ public abstract class Interactible : MonoBehaviour
         {
             UseInteractible();
         }
-
-        Debug.Log("Is Active: " + isActive);
-        Debug.Log("In trigger: " + playerInTrigger);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -42,7 +39,6 @@ public abstract class Interactible : MonoBehaviour
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        Debug.Log("oh ok bye");
         if(other.gameObject.tag == "Player")
         {
             playerInTrigger = false;
