@@ -56,6 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushMultiplier: 3
   pushThreshold: 0.8
+  physicsPush: 1
 --- !u!54 &6979259378728727918
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushMultiplier: 3
   pushThreshold: 0.8
+  physicsPush: 1
 --- !u!1 &6979259377496966350
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +218,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 794bfed571a80194ba8f4d162c30deae,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fd4f94f8de47ef428782078391cfef9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794bfed571a80194ba8f4d162c30deae, type: 3}
 --- !u!1 &1439641682013895290 stripped
@@ -302,6 +309,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 794bfed571a80194ba8f4d162c30deae,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fd4f94f8de47ef428782078391cfef9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794bfed571a80194ba8f4d162c30deae, type: 3}
 --- !u!1 &1439641681237630989 stripped

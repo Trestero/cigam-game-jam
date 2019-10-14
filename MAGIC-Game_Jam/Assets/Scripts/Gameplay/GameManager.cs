@@ -8,13 +8,14 @@ public class GameManager : MonoBehaviour
 {
     private enum GameState { ALIVE, DEAD };
     private GameState gameState = GameState.ALIVE;
+    private bool gameEnded = false;
 
     [Header("Game Rules")]
     [SerializeField] private float secondsAllowedInHell = 20;
     private float timeSpentInHell = 0.0f;
     private float howScrewedAreWe = 0.0f;
     [SerializeField] private GameObject playerPrefab = null;
-
+    [SerializeField] private float respawnTime = 1.0f;
 
     [Header("Gameplay Information")]
     [SerializeField] private GameObject playerEarth = null;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerEarthPosition = playerEarth.transform.position;
+        camRig.SetFollowTarget(playerEarth.transform);
 
         //Get and reset post processing values
         vignette = ppp.GetSetting<Vignette>();
@@ -159,6 +161,7 @@ public class GameManager : MonoBehaviour
     {
         return stealth;
     }
+    public bool GameEnded { get { return gameEnded; } }
 
     public Transform GetPlayer()
     {
@@ -182,7 +185,19 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("oof ouch owie");
+        if (!gameEnded)
+        {
+            gameEnded = true;
+            GetPlayer().GetComponent<PlayerMovement>().ToggleRagdoll();
+            GetPlayer().GetComponent<PlayerMovement>().enabled = false;
+            StartCoroutine(Restart(respawnTime));
+        }
+    }
+
+    private IEnumerator Restart(float delay)
+    {
+        yield return new WaitForSeconds(5);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
     // Spawns a player in the underworld
