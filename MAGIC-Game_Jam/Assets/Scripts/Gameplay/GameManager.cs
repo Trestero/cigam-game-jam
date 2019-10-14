@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.ALIVE:
+                timeSpentInHell = 0;
                 break;
             case GameState.DEAD:
                 timeSpentInHell += Time.deltaTime;
