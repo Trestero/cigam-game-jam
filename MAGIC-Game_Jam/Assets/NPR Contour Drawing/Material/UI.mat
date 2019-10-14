@@ -49,6 +49,6 @@ Material:
     - _SpiralStrength: 0.60714287
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _ContourColor: {r: 0.2736534, g: 0.2736534, b: 0.2736534, a: 1}
+    - _ContourColor: {r: 0.26464725, g: 0.26464725, b: 0.26464725, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0.5}
     - _OutlineColour: {r: 0, g: 0.19607843, b: 0.77254903, a: 1}

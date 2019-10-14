@@ -7,6 +7,7 @@ public class Geyser : MonoBehaviour
     private float timer = 0.0f;
     [SerializeField] private float actionTime = 2.0f;
     private int option = 0;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +39,41 @@ public class Geyser : MonoBehaviour
             }
             timer -= actionTime;
         }
+
+        if(player != null)
+        {
+            player.transform.position += new Vector3(0.0f, gameObject.GetComponent<BoxCollider>().size.y, 0.0f);
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(option >= 1) //active
+    //    {
+    //        if(collision.gameObject.tag == "Player")
+    //        {
+    //            player = collision.gameObject;
+    //        }
+    //        //GameObject.Find("GameManager").GetComponent<GameManager>().GameOver(); //haha you lose idiot
+    //    }
+    //}
+
+    private void OnCollisionStay(Collision collision)
     {
-        if(option >= 1) //active
+        if(collision.gameObject.tag == "Player")
         {
-            GameObject.Find("GameManager").GetComponent<GameManager>().GameOver(); //haha you lose idiot
+            if(player == null)
+            {
+                player = collision.gameObject;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            player = null;
         }
     }
 }
