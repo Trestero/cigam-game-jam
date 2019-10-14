@@ -1020,6 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eyes: {fileID: 7062520350836623976}
   walkSpeed: 3
+  sword: {fileID: 1911638772058333727}
   path: []
   waitTimeSeconds: 2
   detectionDistance: 4
@@ -1394,6 +1395,8 @@ GameObject:
   - component: {fileID: 2117484234981739931}
   - component: {fileID: 2092611900682819561}
   - component: {fileID: 2099160400306504055}
+  - component: {fileID: 76125163885674658}
+  - component: {fileID: 1911638772058333727}
   m_Layer: 0
   m_Name: SWORD
   m_TagString: Untagged
@@ -1460,6 +1463,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &76125163885674658
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123281628863248947}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.53, y: 0.06, z: 3.68}
+  m_Center: {x: 0, y: 0, z: 2}
+--- !u!114 &1911638772058333727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123281628863248947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b045ad6191996b943bd30fadcefc1f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2123297460994543401
 GameObject:
   m_ObjectHideFlags: 0
