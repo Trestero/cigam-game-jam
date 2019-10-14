@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 7ebaaaf9de7d3ee4ea04f9978553617b
+  - enabled: 1
+    path: Assets/Scenes/Level_Intro.unity
+    guid: de22b99997370574f8da51eba9489200
   m_configObjects: {}
