@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: blue_outline
+  m_Name: geyser
   m_Shader: {fileID: 4800000, guid: d76e063479d724a45a6f7025c90eff39, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -62,7 +62,7 @@ Material:
     m_Floats:
     - _Amplitude: 0.01
     - _BumpScale: 1
-    - _ContourWidth: 0.04
+    - _ContourWidth: -0.02
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
