@@ -46,14 +46,4 @@ public abstract class Interactible : MonoBehaviour
     }
 
     protected abstract void UseInteractible();
-
-
-
-    void OnGUI()
-    {
-        if (playerInTrigger)
-        {
-            GUI.Box(new Rect(transform.position.x - 50, transform.position.y - 50, 100, 100), "Press E to use Interactable");
-        }
-    }
 }

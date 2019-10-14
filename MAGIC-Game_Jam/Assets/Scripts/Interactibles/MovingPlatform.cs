@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : Movable
 {
-    Vector3[] bounds;
-    [SerializeField] float speed;
     GameObject player;
-    float timer = 0;
     bool lerpUp = true;
 
     // Start is called before the first frame update
@@ -17,7 +14,6 @@ public class MovingPlatform : MonoBehaviour
         bounds = new Vector3[2];
         bounds[0] = transform.parent.GetChild(0).transform.position;
         bounds[1] = transform.parent.GetChild(1).transform.position;
-        Debug.Log(bounds);
 
         //snap platform to the center point of it's movement
         transform.position = bounds[0];
@@ -30,7 +26,7 @@ public class MovingPlatform : MonoBehaviour
         
     }
 
-    public void Move()
+    public override void Move()
     {
         if (lerpUp)
         {
@@ -49,12 +45,12 @@ public class MovingPlatform : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
         player.transform.SetParent(transform);
     }
 
-    private void OnCollisionExit(Collision collision)
+    protected void OnCollisionExit(Collision collision)
     {
         player.transform.parent = null;
     }

@@ -18,6 +18,6 @@ public class Button : Interactible
 
     protected override void UseInteractible()
     {
-        platform.GetComponent<MovingPlatform>().Move();
+        platform.GetComponent<Movable>().Move();
     }
 }

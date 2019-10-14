@@ -181,15 +181,19 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        
+        Debug.Log("oof ouch owie");
     }
 
     // Spawns a player in the underworld
     void GoToHell()
     {
-        Vector3 spawnPos = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, playerEarth.transform);
+        //Vector3 spawnPos = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, playerEarth.transform);
         //deadPlayer = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
-        playerHell.transform.position = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, playerEarth.transform);
+        //playerHell.transform.position = GetEquivalentPosition(topLevel.transform, bottomLevel.transform, playerEarth.transform);
+
+
+        //TODO: fix this absolute trash
+        playerHell.transform.position = playerEarth.transform.position - new Vector3(0.0f, playerEarth.transform.position.y + 50.0f, 0.0f);
     }
 
 
