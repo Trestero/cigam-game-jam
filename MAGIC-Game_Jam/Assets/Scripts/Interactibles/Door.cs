@@ -24,7 +24,7 @@ public class Door : Movable
 
     public override void Move()
     {
-
+        Debug.Log("opening");
         timer += Time.deltaTime * speed;
 
         transform.position = Vector3.Lerp(bounds[0], bounds[1], timer);
