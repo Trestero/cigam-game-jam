@@ -8,8 +8,6 @@ public abstract class Interactible : MonoBehaviour
     public bool GetIsActive() { return isActive; }
     public void SetIsActive(bool value) { isActive = value; }
 
-    protected bool playerInTrigger;
-
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -19,30 +17,26 @@ public abstract class Interactible : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if(playerInTrigger && Input.GetKeyDown(KeyCode.E))
-        {
-            isActive = !isActive;
-        }
         if(isActive)
         {
             UseInteractible();
         }
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
-            playerInTrigger = true;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                isActive = !isActive;
+            }
         }
     }
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Player")
-        {
-            playerInTrigger = false;
-        }
+        isActive = false;
     }
 
     protected abstract void UseInteractible();

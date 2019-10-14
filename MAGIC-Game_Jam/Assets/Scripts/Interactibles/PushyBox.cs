@@ -27,8 +27,7 @@ public class PushyBox : Interactible
 
     protected override void UseInteractible()
     {
-        if (playerInTrigger)
-        {
+
             //transform.SetParent(player.transform);
             transform.SetParent(player.transform);
 
@@ -39,17 +38,6 @@ public class PushyBox : Interactible
                 transform.parent.position.z);
 
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        }
-    }
-
-    protected override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-        Debug.Log("player in push box");
-    }
-
-    protected override void OnTriggerExit(Collider other)
-    {
-
+        
     }
 }
