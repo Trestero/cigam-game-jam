@@ -36,11 +36,6 @@ public class SoftDirt : Interactible
             other.SetZScale(other.GetZScale() + speed * pushMultiplier);
         }
 
-        if(scale.z <= 0)
-        {
-            scale.z = 0.01f;
-        }
-
         if (scale.z != transform.localScale.z)
         {
             transform.localScale = scale;
@@ -57,8 +52,9 @@ public class SoftDirt : Interactible
     {
         if (col.gameObject.tag == "Player")
         {
+            Debug.Log("Player on soft dirt");
             speed = -col.gameObject.GetComponent<PlayerMovement>().GetLandingVelocity();
-            Debug.Log(speed);
+            //Debug.Log(speed);
         }
     }
 }
