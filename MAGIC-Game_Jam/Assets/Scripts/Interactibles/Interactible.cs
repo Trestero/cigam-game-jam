@@ -36,7 +36,7 @@ public abstract class Interactible : MonoBehaviour
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        isActive = false;
+        //isActive = false;
     }
 
     protected abstract void UseInteractible();
