@@ -81,6 +81,11 @@ public class GameManager : MonoBehaviour
                 timeSpentInHell += Time.deltaTime;
                 howScrewedAreWe = timeSpentInHell / secondsAllowedInHell;
                 camRig.ScreenRatio = Mathf.Lerp(0.5f, 1.0f, howScrewedAreWe);
+
+                if(timeSpentInHell >= secondsAllowedInHell)
+                {
+                    GameOver();
+                }
                 break;
         }
 

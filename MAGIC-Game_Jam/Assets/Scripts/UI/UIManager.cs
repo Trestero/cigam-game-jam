@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
 
     public void TogglePause()
     {
+        Debug.Log("hello");
+
         if (Time.timeScale == 1.0f)
         {
             Time.timeScale = 0.0f;
