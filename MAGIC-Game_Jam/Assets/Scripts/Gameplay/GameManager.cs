@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     private enum GameState { ALIVE, DEAD };
     private GameState gameState = GameState.ALIVE;
-    private bool gameEnded = false;
 
     [Header("Game Rules")]
     [SerializeField] private float secondsAllowedInHell = 20;
     private float timeSpentInHell = 0.0f;
     private float howScrewedAreWe = 0.0f;
-    [SerializeField] private float respawnTime = 2.0f;
+    [SerializeField] private GameObject playerPrefab = null;
 
 
     [Header("Gameplay Information")]
@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerEarthPosition = playerEarth.transform.position;
-        camRig.SetFollowTarget(playerEarth.transform);
 
         //Get and reset post processing values
         vignette = ppp.GetSetting<Vignette>();
@@ -64,7 +63,6 @@ public class GameManager : MonoBehaviour
 
         colorGrading = ppp.GetSetting<ColorGrading>();
         colorGrading.hueShift.Override(0.0f);
-
     }
 
     // Update is called once per frame
@@ -120,14 +118,14 @@ public class GameManager : MonoBehaviour
             playerColor.a = 0.2f;
             playerHellMat.SetColor("_ContourColor", playerColor);
         }
-        if (stealth || stealthCooldown)
+        if(stealth || stealthCooldown)
         {
             timer += Time.deltaTime;
         }
-        if (timer >= stealthTime)
+        if(timer >= stealthTime)
         {
             timer = 0.0f;
-            if (stealth == true)
+            if(stealth == true)
             {
                 stealth = false;
                 stealthCooldown = true;
@@ -161,11 +159,9 @@ public class GameManager : MonoBehaviour
         return stealth;
     }
 
-    public bool GameEnded { get { return gameEnded; } }
-
     public Transform GetPlayer()
     {
-        if (gameState == GameState.ALIVE)
+        if(gameState == GameState.ALIVE)
         {
             return playerEarth.transform;
         }
@@ -185,19 +181,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (!gameEnded)
-        {
-            gameEnded = true;
-            GetPlayer().GetComponent<PlayerMovement>().ToggleRagdoll();
-            GetPlayer().GetComponent<PlayerMovement>().enabled = false;
-            StartCoroutine(Restart(respawnTime));
-        }
-    }
-
-    private IEnumerator Restart(float delay)
-    {
-        yield return new WaitForSeconds(5);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        
     }
 
     // Spawns a player in the underworld

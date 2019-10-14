@@ -1865,7 +1865,7 @@ PrefabInstance:
     - target: {fileID: 8205566188876973693, guid: 97009dd9a5765e54abb0758004ad591d,
         type: 3}
       propertyPath: secondsAllowedInHell
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8205566188876973693, guid: 97009dd9a5765e54abb0758004ad591d,
         type: 3}
@@ -1877,26 +1877,5 @@ PrefabInstance:
       propertyPath: playerHell
       value: 
       objectReference: {fileID: 1775316227}
-    - target: {fileID: 8205566188876973693, guid: 97009dd9a5765e54abb0758004ad591d,
-        type: 3}
-      propertyPath: ppp
-      value: 
-      objectReference: {fileID: 11400000, guid: 18a39be719e35e0498f7463df50b93b6,
-        type: 2}
-    - target: {fileID: 8205566188876973693, guid: 97009dd9a5765e54abb0758004ad591d,
-        type: 3}
-      propertyPath: topLevel
-      value: 
-      objectReference: {fileID: 455278891}
-    - target: {fileID: 8205566188876973693, guid: 97009dd9a5765e54abb0758004ad591d,
-        type: 3}
-      propertyPath: bottomLevel
-      value: 
-      objectReference: {fileID: 649536458}
-    - target: {fileID: 8205566188876973693, guid: 97009dd9a5765e54abb0758004ad591d,
-        type: 3}
-      propertyPath: respawnTime
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97009dd9a5765e54abb0758004ad591d, type: 3}

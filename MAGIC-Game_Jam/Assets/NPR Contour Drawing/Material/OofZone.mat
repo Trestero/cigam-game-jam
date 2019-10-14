@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UI
+  m_Name: OofZone
   m_Shader: {fileID: 4800000, guid: d76e063479d724a45a6f7025c90eff39, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -36,19 +36,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amplitude: 0.03
+    - _Amplitude: 0.005
     - _AnimSpeed: 6
-    - _ContourWidth: 0.01
+    - _ContourWidth: 0.001
     - _ContrastBoost: 2
     - _DistanceThreshold: 0.18142857
     - _OutlineWidth: 0.01
     - _QuantizationLevels: 3
     - _RedrawRate: 16
     - _Scribbliness: 0.03
-    - _Speed: 5
+    - _Speed: 10
     - _SpiralStrength: 0.60714287
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _ContourColor: {r: 0.26464725, g: 0.26464725, b: 0.26464725, a: 1}
+    - _ContourColor: {r: 0.5943396, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0.5}
     - _OutlineColour: {r: 0, g: 0.19607843, b: 0.77254903, a: 1}

@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     [Header("Basic")]
     [SerializeField] private Transform eyes = null;
     [SerializeField] private float walkSpeed = 1.0f;
-    [SerializeField] private SkellymanSword sword;
 
     [Header("Patrol")]
     [SerializeField] private Transform[] path = null;
@@ -74,10 +73,6 @@ public class Enemy : MonoBehaviour
                         ChangeMode(AIState.Pursuit);
                     }
                 }
-                else
-                {
-                    Walking = false;
-                }
                 break;
             case AIState.Pursuit:
                 if (!pursuitTarget)
@@ -87,20 +82,17 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    // attack if close enoughd
-                    bool attacking = animController.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
-                    if (!attacking)
+                    // attack if close enough
+                    if ((pursuitTarget.position - transform.position).sqrMagnitude < 1.0f)
                     {
-                        if ((pursuitTarget.position - transform.position).sqrMagnitude < 1.0f)
+                        if (!animController.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
                         {
                             animController.SetTrigger("attack");
-                            Sword.Toggle(true);
                         }
-                        else
-                        {
-                            Sword.Toggle(false);
-                            MoveTowards(pursuitTarget.position);
-                        }
+                    }
+                    else
+                    {
+                        MoveTowards(pursuitTarget.position);
                     }
                     // see if it should give up on chasing player
                     GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -209,8 +201,6 @@ public class Enemy : MonoBehaviour
         // player can be seen
         return true;
     }
-
-    public SkellymanSword Sword { get { return sword; } }
 
     private void OnDrawGizmos()
     {
